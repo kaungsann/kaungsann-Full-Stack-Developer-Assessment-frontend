@@ -1,13 +1,23 @@
 import PropTypes from "prop-types";
+import logo from "./assets/images/logo.png";
+import SideBar from "./components/SideBar";
+import MobileNav from "./components/MobileNav";
 
 const AppContainer = ({ children }) => {
   return (
     <>
-      <div className="flex h-screen" style={{ height: "calc(100vh - 64px)" }}>
-        <div className="flex-1 overflow-y-auto container mx-auto p-5">
+      <main className="flex h-screen w-full font-inter">
+        <SideBar />
+
+        <div className="flex size-full flex-col">
+          <div className="root-layout">
+            <img src={logo} alt="logo" className="w-20 h-16" />
+
+            <div>{<MobileNav />}</div>
+          </div>
           {children}
         </div>
-      </div>
+      </main>
     </>
   );
 };

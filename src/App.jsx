@@ -14,19 +14,12 @@ function App() {
     // { path: "/", element: <Navigate to="threesixfive" /> },
     { path: "/register", element: <AuthPage type="register" /> },
     { path: "/login", element: <AuthPage type="login" /> },
-
     { path: "/401-unauthorized", element: <UnauthorizePage /> },
     {
       path: "/",
       element: <PrivateRoute roles={["admin", "user"]} />,
       children: [{ path: "threesixfive", element: <ThreeSixFivePage /> }],
     },
-    {
-      path: "/owner",
-      element: <PrivateRoute roles={["admin", "user"]} />,
-      children: [{ path: "threesixfive", element: <ThreeSixFivePage /> }],
-    },
-
     { path: "*", element: <NotFoundPage /> },
   ];
 

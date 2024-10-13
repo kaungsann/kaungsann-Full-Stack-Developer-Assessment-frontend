@@ -4,12 +4,14 @@ import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
 import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
-
+import ThemeButton from "../components/ThemeButton";
 function AuthForm({ type }) {
-  console.log("type is a", type);
   return (
     <>
-      <section className="w-full flex flex-col justify-center items-center ">
+      <section className="relative w-full flex flex-col justify-center items-center">
+        <div className="absolute top-3 right-6">
+          <ThemeButton />
+        </div>
         <header className="w-3/4 lg:w-2/4	mx-auto p-4">
           <img src={logo} alt="logo" className="w-60 h-40 mx-auto mb-8" />
           <h2 className="text-slate-600 text-center font-sans text-2xl mb-12 font-bold">
@@ -32,7 +34,12 @@ function AuthForm({ type }) {
                   className="w-full mb-12"
                 />
 
-                <CustomButton name="Sign In" className="w-full mb-6 p-6" />
+                <CustomButton
+                  color="primary"
+                  variant="solid"
+                  name="Sign In"
+                  className="w-full mb-6 p-6"
+                />
               </>
             ) : (
               <>
@@ -55,7 +62,12 @@ function AuthForm({ type }) {
                   className="w-full mb-12"
                 />
 
-                <CustomButton name="Sign Up" className="w-full mb-6 p-6" />
+                <CustomButton
+                  name="Sign Up"
+                  color="primary"
+                  variant="solid"
+                  className="w-full mb-6 p-6"
+                />
               </>
             )}
           </form>

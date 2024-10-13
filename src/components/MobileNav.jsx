@@ -7,14 +7,14 @@ import {
 } from "@nextui-org/react";
 import { useState } from "react";
 import { sidebarLinks } from "../constants/sidebarLinks";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const MobileNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className="bg-[#F5F5F5]">
+    <Navbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -28,27 +28,28 @@ const MobileNav = () => {
             location.pathname.startsWith(`${item.route}/`);
 
           return (
-            <NavbarMenuItem
-              href={item.route}
-              key={item.label}
-              className={`w-2/4 my-3 rounded-lg flex py-3  ${
-                isActive ? "bg-blue-500" : ""
-              }`}
-            >
-              <div className="relative size-6 ml-4">
-                <img
-                  src={item.imgURL}
-                  alt={item.label}
-                  className={`${isActive ? "brightness-[3] invert-0" : ""}`}
-                />
-              </div>
-              <p
-                className={`ml-6 sidebar-label ${
-                  isActive ? "text-white" : "text-black"
+            <NavbarMenuItem key={item.label}>
+              <Link
+                href={item.route}
+                className={`w-2/4 my-3 rounded-lg flex py-3  ${
+                  isActive ? "bg-blue-500" : ""
                 }`}
               >
-                {item.label}
-              </p>
+                <div className="relative size-6 ml-4">
+                  <img
+                    src={item.imgURL}
+                    alt={item.label}
+                    className={`${isActive ? "brightness-[3] invert-0" : ""}`}
+                  />
+                </div>
+                <p
+                  className={`ml-6 sidebar-label ${
+                    isActive ? "text-white" : "text-black"
+                  }`}
+                >
+                  {item.label}
+                </p>
+              </Link>
             </NavbarMenuItem>
           );
         })}

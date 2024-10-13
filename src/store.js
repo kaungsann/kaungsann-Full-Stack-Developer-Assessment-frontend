@@ -16,6 +16,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import authReducer from "./features/authSlice";
+import themeReducer from "./features/themeSlice";
 import { authApi } from "./services/authAPI";
 import { userApi } from "./services/userAPI";
 
@@ -24,11 +25,12 @@ export const resetStore = createAction("RESET_STORE");
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth"],
+  whitelist: ["auth", "theme"],
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  theme: themeReducer,
   [authApi.reducerPath]: authApi.reducer,
   [userApi.reducerPath]: userApi.reducer,
 });

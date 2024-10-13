@@ -1,18 +1,18 @@
-import sideBarIcon1 from "../assets/images/logo.png";
-import sideBarIcon2 from "../assets/images/logo.png";
+import threeSixFive from "../assets/images/365.png";
+import ibetIcon from "../assets/images/ibet.png";
 import sideBarIcon3 from "../assets/images/logo.png";
 import sideBarIcon4 from "../assets/images/logo.png";
 
 export const sidebarLinks = [
   {
-    imgURL: sideBarIcon1,
+    imgURL: threeSixFive,
     route: "/threesixfive",
     label: "365",
   },
   {
-    imgURL: sideBarIcon2,
-    route: "/my-banks",
-    label: "One-BeltX",
+    imgURL: ibetIcon,
+    route: "/ibet",
+    label: "IBET",
   },
   {
     imgURL: sideBarIcon3,

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import authImg from "../assets/images/auth-image.svg";
 
 import AuthForm from "../components/AuthForm";
-import ThemeButton from "../components/ThemeButton";
+
 function AuthPage({ type }) {
   return (
     <>

@@ -6,7 +6,7 @@ const SideBar = () => {
   const location = useLocation();
 
   return (
-    <section className="sidebar">
+    <section className="sidebar bg-white dark:bg-[#020817]">
       <nav className="flex flex-col gap-4">
         <Link to="/" className="mb-8 cursor-pointer flex items-center gap-2">
           <img src={logo} alt="win-track-logo" className="w-20 h-12" />

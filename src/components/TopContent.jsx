@@ -6,6 +6,7 @@ import {
   DropdownTrigger,
   DropdownMenu,
 } from "@nextui-org/react";
+import { useNavigate } from "react-router-dom";
 
 // import { columns } from "./data";
 // import { capitalize } from "./utils";
@@ -27,6 +28,7 @@ export const TopContent = ({
       setFilterValue("");
     }
   };
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col gap-4">
@@ -80,7 +82,13 @@ export const TopContent = ({
               ))} */}
             </DropdownMenu>
           </Dropdown>
-          <Button size="md">Add New</Button>
+          <Button
+            size="md"
+            className="bg-[#6366f1] text-white"
+            onClick={() => navigate("/three-six-five/data-paste")}
+          >
+            Add Data
+          </Button>
         </div>
       </div>
       <div className="flex justify-between items-center">

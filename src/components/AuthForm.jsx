@@ -35,10 +35,9 @@ function AuthForm({ type }) {
                 />
 
                 <CustomButton
-                  color="primary"
                   variant="solid"
                   name="Sign In"
-                  className="w-full mb-6 p-6"
+                  className="w-full mb-6 p-6 b bg-[#6366f1] text-white"
                 />
               </>
             ) : (
@@ -64,9 +63,8 @@ function AuthForm({ type }) {
 
                 <CustomButton
                   name="Sign Up"
-                  color="primary"
                   variant="solid"
-                  className="w-full mb-6 p-6"
+                  className="w-full mb-6 p-6 bg-[#6366f1] text-white"
                 />
               </>
             )}

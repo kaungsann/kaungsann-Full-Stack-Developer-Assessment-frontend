@@ -14,14 +14,17 @@ const MobileNav = () => {
   const location = useLocation();
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      onMenuOpenChange={setIsMenuOpen}
+      className="bg-gray-100 dark:bg-[#020817]"
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         />
       </NavbarContent>
 
-      <NavbarMenu>
+      <NavbarMenu className="dark:bg-[#020817] bg-gray-100">
         {sidebarLinks.map((item) => {
           const isActive =
             location.pathname === item.route ||
@@ -30,7 +33,7 @@ const MobileNav = () => {
           return (
             <NavbarMenuItem key={item.label}>
               <Link
-                href={item.route}
+                to={item.route}
                 className={`w-2/4 my-3 rounded-lg flex py-3  ${
                   isActive ? "bg-blue-500" : ""
                 }`}
@@ -44,7 +47,7 @@ const MobileNav = () => {
                 </div>
                 <p
                   className={`ml-6 sidebar-label ${
-                    isActive ? "text-white" : "text-black"
+                    isActive ? "text-white" : "text-black dark:text-white"
                   }`}
                 >
                   {item.label}

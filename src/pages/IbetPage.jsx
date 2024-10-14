@@ -1,8 +1,10 @@
+import HeaderBox from "../components/HeaderBox";
+
 const IbetPage = () => {
   return (
-    <>
-      <div>IbetPage</div>
-    </>
+    <div className="p-4">
+      <HeaderBox />
+    </div>
   );
 };
 

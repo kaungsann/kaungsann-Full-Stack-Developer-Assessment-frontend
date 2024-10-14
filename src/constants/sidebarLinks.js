@@ -6,7 +6,7 @@ import sideBarIcon4 from "../assets/images/logo.png";
 export const sidebarLinks = [
   {
     imgURL: threeSixFive,
-    route: "/threesixfive",
+    route: "/three-six-five",
     label: "365",
   },
   {

@@ -89,7 +89,7 @@
   }
 
   .sidebar {
-    @apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-gray-200 pt-8  max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px];
+    @apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-gray-100 pt-8  max-md:hidden shadow-sm sm:p-4 xl:p-6 2xl:w-[355px];
   }
 
   .root-layout {

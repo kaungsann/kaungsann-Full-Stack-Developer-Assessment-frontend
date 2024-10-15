@@ -2,9 +2,12 @@ import PropTypes from "prop-types";
 import { Button, Textarea } from "@nextui-org/react";
 import HeaderBox from "./HeaderBox";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function DataPaster({ type }) {
   const [value, setValue] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {
@@ -22,6 +25,7 @@ function DataPaster({ type }) {
 
       const data = await response.json();
       console.log("Success:", data);
+      navigate("/three-six-five");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -46,9 +50,20 @@ function DataPaster({ type }) {
           onValueChange={setValue}
         />
 
-        <div className="flex justify-end">
+        <div
+          className="flex justify-end my-6 gap-4
+        "
+        >
           <Button
-            className="my-6 bg-[#6366F1] text-white"
+            color="primary"
+            variant="ghost"
+            className="rounded-md"
+            onClick={() => navigate("/three-six-five")}
+          >
+            Back
+          </Button>
+          <Button
+            className="bg-[#6366F1] text-white rounded-md"
             size="md"
             onClick={handleSubmit}
           >

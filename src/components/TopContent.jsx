@@ -5,19 +5,19 @@ import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
+  DropdownItem,
 } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 
 // import { columns } from "./data";
 // import { capitalize } from "./utils";
 
-export const TopContent = ({
+const TopContent = ({
   filterValue,
-  statusFilter,
+  columns,
   visibleColumns,
   setFilterValue,
   setVisibleColumns,
-  setStatusFilter,
   onRowsPerPageChange,
   usersLength,
 }) => {
@@ -41,28 +41,9 @@ export const TopContent = ({
           onClear={() => setFilterValue("")}
           onValueChange={onSearchChange}
           className="max-w-80"
+          //  onValueChange={(val) => onFilter("name", val)}
         />
         <div className="flex gap-3">
-          <Dropdown>
-            <DropdownTrigger>
-              <Button size="md" variant="flat">
-                Status
-              </Button>
-            </DropdownTrigger>
-            <DropdownMenu
-              disallowEmptySelection
-              selectedKeys={statusFilter}
-              selectionMode="multiple"
-              onSelectionChange={setStatusFilter}
-            >
-              {/* {statusOptions.map((status) => (
-                <DropdownItem key={status.uid}>
-                  {capitalize(status.name)}
-                </DropdownItem>
-              ))} */}
-            </DropdownMenu>
-          </Dropdown>
-
           <Dropdown>
             <DropdownTrigger>
               <Button size="md" variant="flat">
@@ -72,14 +53,17 @@ export const TopContent = ({
             <DropdownMenu
               disallowEmptySelection
               selectedKeys={visibleColumns}
+              closeOnSelect={false}
               selectionMode="multiple"
               onSelectionChange={setVisibleColumns}
+              classNames={{
+                base: "h-96",
+                content: "p-0 border-small border-divider bg-background",
+              }}
             >
-              {/* {columns.map((column) => (
-                <DropdownItem key={column.uid}>
-                  {capitalize(column.name)}
-                </DropdownItem>
-              ))} */}
+              {columns.map((column) => (
+                <DropdownItem key={column.key}>{column.label}</DropdownItem>
+              ))}
             </DropdownMenu>
           </Dropdown>
           <Button
@@ -108,13 +92,17 @@ export const TopContent = ({
 
 TopContent.propTypes = {
   filterValue: PropTypes.string.isRequired,
-  statusFilter: PropTypes.string.isRequired,
-  visibleColumns: PropTypes.number.isRequired,
-
-  setFilterValue: PropTypes.string.isRequired,
-  setVisibleColumns: PropTypes.string.isRequired,
-  setStatusFilter: PropTypes.number.isRequired,
-
-  onRowsPerPageChange: PropTypes.string.isRequired,
+  visibleColumns: PropTypes.instanceOf(Set).isRequired,
+  setFilterValue: PropTypes.func.isRequired,
+  setVisibleColumns: PropTypes.func.isRequired,
+  onRowsPerPageChange: PropTypes.func.isRequired,
   usersLength: PropTypes.number.isRequired,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
+
+export default TopContent;

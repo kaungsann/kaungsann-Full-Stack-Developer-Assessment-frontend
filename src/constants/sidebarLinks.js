@@ -33,13 +33,7 @@ export const INITIAL_VISIBLE_COLUMNS = [
   "bet_amount",
   "member_count",
   "trun_over",
-  "stake_count",
-  "gross_comm",
-  "member_wl",
-  "member_com",
-  "member_total",
-  "agent_turnover",
-  "agent_wl",
+  "action",
   // "agent_com",
   // "agent_total",
   // "master_agent_turnover",
@@ -74,8 +68,8 @@ export const columns = [
     label: "Bet Amount",
   },
   {
-    key: "turnover",
-    label: "Turn Over",
+    key: "trun_over",
+    label: "Trun Over",
   },
   {
     key: "member_count",
@@ -163,6 +157,10 @@ export const columns = [
   },
   {
     key: "actions",
+    label: "Action",
+  },
+  {
+    key: "action",
     label: "Action",
   },
 ];

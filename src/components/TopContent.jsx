@@ -9,9 +9,6 @@ import {
 } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 
-// import { columns } from "./data";
-// import { capitalize } from "./utils";
-
 const TopContent = ({
   filterValue,
   columns,
@@ -57,7 +54,7 @@ const TopContent = ({
               selectionMode="multiple"
               onSelectionChange={setVisibleColumns}
               classNames={{
-                base: "h-96",
+                base: "h-96 overflow-y-scroll",
                 content: "p-0 border-small border-divider bg-background",
               }}
             >

@@ -22,10 +22,12 @@ const TableBox = ({
   paginatePage,
   initial_visible_columns,
   columns,
+  renderCell,
 }) => {
   const [visibleColumns, setVisibleColumns] = React.useState(
     new Set(initial_visible_columns)
   );
+
   const headerColumns = useMemo(() => {
     if (visibleColumns === "all") return initial_visible_columns;
 
@@ -33,6 +35,8 @@ const TableBox = ({
       Array.from(visibleColumns).includes(column.key)
     );
   }, [visibleColumns, columns, initial_visible_columns]);
+
+  console.log("result is a", results);
 
   return (
     <>
@@ -65,7 +69,9 @@ const TableBox = ({
           {(item) => (
             <TableRow key={item.id}>
               {(columnKey) => (
-                <TableCell key={columnKey}>{(item, columnKey)}</TableCell>
+                <TableCell key={columnKey}>
+                  {renderCell(item, columnKey)}
+                </TableCell>
               )}
             </TableRow>
           )}
@@ -94,6 +100,7 @@ TableBox.propTypes = {
       label: PropTypes.string.isRequired,
     })
   ).isRequired,
+  renderCell: PropTypes.func,
 };
 
 export default TableBox;

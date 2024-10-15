@@ -1,8 +1,17 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import HeaderBox from "../components/HeaderBox";
 
 import TableBox from "../components/TableBox";
 import { INITIAL_VISIBLE_COLUMNS, columns } from "../constants/sidebarLinks";
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@nextui-org/react";
+import { Ellipsis } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const ThreeSixFivePage = () => {
   const [page, setPage] = useState(1);
@@ -10,9 +19,9 @@ const ThreeSixFivePage = () => {
   const [selectedQueies, setSelectedQueies] = useState({
     account: "",
     contact: "",
-    assignedTo: "",
-    status: "",
   });
+
+  const navigateTo = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +52,64 @@ const ThreeSixFivePage = () => {
     setSelectedQueies((prevState) => ({ ...prevState, [key]: value }));
   };
 
-  console.log("table data is a", data);
+  const renderCell = useCallback(
+    (datas, columnKey) => {
+      if (!datas) return null; // Handle undefined datas
+
+      const cellValue = datas[columnKey];
+
+      switch (columnKey) {
+        case "account":
+          return <div>{datas.account}</div>;
+        case "contact":
+          return <h3>{datas.contact}</h3>;
+        case "cur":
+          return <h3>{datas.cur}</h3>;
+        case "bet_amount":
+          return <h3>{datas.bet_amount}</h3>;
+        case "trun_over":
+          return <h3>{datas.trun_over}</h3>;
+        case "action":
+          return (
+            <div className="relative flex justify-start items-center">
+              <Dropdown aria-label="Actions" className="bg-[#6366f1]">
+                <DropdownTrigger>
+                  <Button isIconOnly size="sm" variant="light">
+                    <Ellipsis className="dark:text-white" size={20} />
+                  </Button>
+                </DropdownTrigger>
+                <DropdownMenu aria-label="Action Items" className="text-white">
+                  <DropdownItem
+                    onPress={() => {
+                      navigateTo(`/projects/${datas.id}`);
+                    }}
+                  >
+                    View
+                  </DropdownItem>
+                  <DropdownItem
+                    onPress={() => {
+                      navigateTo(`/master/projects/edit/${datas.id}`);
+                    }}
+                  >
+                    Edit
+                  </DropdownItem>
+                  <DropdownItem
+                    onPress={() => {
+                      navigateTo(`/master/projects/delete/${datas.id}`);
+                    }}
+                  >
+                    Delete
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </div>
+          );
+        default:
+          return cellValue !== undefined ? cellValue : null; // Handle undefined cellValue
+      }
+    },
+    [navigateTo]
+  );
 
   return (
     <div className="p-4">
@@ -57,6 +123,7 @@ const ThreeSixFivePage = () => {
         paginatePage={paginatePage}
         initial_visible_columns={INITIAL_VISIBLE_COLUMNS}
         columns={columns}
+        renderCell={renderCell}
       />
     </div>
   );

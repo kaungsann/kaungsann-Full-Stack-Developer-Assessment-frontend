@@ -7,7 +7,7 @@ function HeaderBox() {
         <div>
           <span className="text-2xl font-sans font-bold">Hello,</span>
           <span className="text-[#6366F1] ml-2 font-bold font-sans text-2xl">
-            Kaung Sann
+            Kaung Sann 👋
           </span>
         </div>
 

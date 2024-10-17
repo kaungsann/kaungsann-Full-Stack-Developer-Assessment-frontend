@@ -26,7 +26,7 @@ const ThreeSixFivePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:3000/v1/infos", {
+        const response = await fetch("http://127.0.0.1:3000/v1/threesixfives", {
           method: "GET",
         });
 
@@ -81,7 +81,7 @@ const ThreeSixFivePage = () => {
                 <DropdownMenu aria-label="Action Items" className="text-white">
                   <DropdownItem
                     onPress={() => {
-                      navigateTo(`/projects/${datas.id}`);
+                      navigateTo(`/three-six-five/${datas.id}`);
                     }}
                   >
                     View

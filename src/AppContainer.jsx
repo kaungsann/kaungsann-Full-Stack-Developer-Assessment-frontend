@@ -15,7 +15,9 @@ const AppContainer = ({ children }) => {
 
             <div>{<MobileNav />}</div>
           </div>
-          {children}
+          <div className="h-screen overflow-y-scroll custom-scrollbar">
+            {children}
+          </div>
         </div>
       </main>
     </>

@@ -11,14 +11,13 @@ function DataPaster({ type }) {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:3000/v1/infos", {
+      const response = await fetch("http://localhost:3000/v1/threesixfives", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ data: value }),
       });
-
       if (!response.ok) {
         throw new Error("Failed to send data");
       }

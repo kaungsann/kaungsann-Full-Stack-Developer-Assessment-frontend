@@ -10,12 +10,25 @@ import NotFoundPage from "./pages/NotFoundPage";
 import AuthPage from "./pages/AuthPage";
 import IbetPage from "./pages/IbetPage";
 import DataPaster from "./components/DataPaster";
+import ThreeSixFiveForm from "./components/ThreeSixFiveForm";
 
 function MainApp() {
   const routeConfig = [
     { path: "/register", element: <AuthPage type="register" /> },
     { path: "/login", element: <AuthPage type="login" /> },
     { path: "/401-unauthorized", element: <UnauthorizePage /> },
+
+    {
+      path: "/",
+      element: <PrivateRoute roles={["admin", "user"]} />,
+      children: [
+        {
+          path: "three-six-five/:id",
+          element: <ThreeSixFiveForm mode="View" />,
+        },
+      ],
+    },
+
     {
       path: "/",
       element: <PrivateRoute roles={["admin", "user"]} />,
@@ -25,6 +38,19 @@ function MainApp() {
         {
           path: "three-six-five/data-paste",
           element: <DataPaster type="Three Six Five" />,
+        },
+
+        {
+          path: "three-six-five/create",
+          element: <ThreeSixFiveForm mode="Create" />,
+        },
+        {
+          path: "three-six-five/edit",
+          element: <ThreeSixFiveForm mode="Edit" />,
+        },
+        {
+          path: "three-six-five/delete",
+          element: <ThreeSixFiveForm mode="Delete" />,
         },
       ],
     },

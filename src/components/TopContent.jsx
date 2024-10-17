@@ -8,6 +8,7 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
+import { Search } from "lucide-react";
 
 const TopContent = ({
   filterValue,
@@ -39,6 +40,7 @@ const TopContent = ({
           onValueChange={onSearchChange}
           className="max-w-80"
           //  onValueChange={(val) => onFilter("name", val)}
+          startContent={<Search size={20} />}
         />
         <div className="flex gap-3">
           <Dropdown>

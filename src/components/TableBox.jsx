@@ -7,6 +7,7 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  Skeleton,
 } from "@nextui-org/react";
 
 import BottonContent from "./BottomContent";
@@ -23,6 +24,7 @@ const TableBox = ({
   initial_visible_columns,
   columns,
   renderCell,
+  handleNavigate,
 }) => {
   const [visibleColumns, setVisibleColumns] = React.useState(
     new Set(initial_visible_columns)
@@ -36,7 +38,7 @@ const TableBox = ({
     );
   }, [visibleColumns, columns, initial_visible_columns]);
 
-  console.log("result is a", results);
+  console.log("result is a", initial_visible_columns);
 
   return (
     <>
@@ -55,6 +57,7 @@ const TableBox = ({
             visibleColumns={visibleColumns}
             filterValue={selectedQueries.account}
             setVisibleColumns={setVisibleColumns}
+            handleNavigate={handleNavigate}
           />
         }
       >
@@ -66,7 +69,7 @@ const TableBox = ({
           </TableHeader>
         </TableHeader>
         <TableBody items={results}>
-          {(item) => (
+          {/* {(item) => (
             <TableRow key={item.id}>
               {(columnKey) => (
                 <TableCell key={columnKey}>
@@ -74,7 +77,29 @@ const TableBox = ({
                 </TableCell>
               )}
             </TableRow>
-          )}
+          )} */}
+          {/* //loading || */}
+          {results.length === 0
+            ? // Render skeleton rows when loading or when there are no results
+              Array.from({ length: 10 }).map((_, index) => (
+                <TableRow key={index}>
+                  {headerColumns.map((column) => (
+                    <TableCell key={column.key}>
+                      <Skeleton className="h-3 min-w-16 rounded-lg" />
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            : // Render actual table rows when results are available
+              results.map((item) => (
+                <TableRow key={item.id}>
+                  {headerColumns.map((columnKey) => (
+                    <TableCell key={columnKey.key}>
+                      {renderCell(item, columnKey.key)}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
         </TableBody>
       </Table>
       <BottonContent
@@ -101,6 +126,7 @@ TableBox.propTypes = {
     })
   ).isRequired,
   renderCell: PropTypes.func,
+  handleNavigate: PropTypes.func,
 };
 
 export default TableBox;

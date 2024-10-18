@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import HeaderBox from "../components/HeaderBox";
 
 import TableBox from "../components/TableBox";
-import { INITIAL_VISIBLE_COLUMNS, columns } from "../constants/sidebarLinks";
+import { INITIAL_VISIBLE_COLUMNS, columns } from "../constants/index";
 import {
   Button,
   Dropdown,
@@ -36,6 +36,7 @@ const ThreeSixFivePage = () => {
 
         const result = await response.json();
         setData(result);
+        navigateTo("/three-six-five");
       } catch (error) {
         console.error("error is a", error);
       }
@@ -69,7 +70,7 @@ const ThreeSixFivePage = () => {
           return <h3>{datas.bet_amount}</h3>;
         case "trun_over":
           return <h3>{datas.trun_over}</h3>;
-        case "action":
+        case "actions":
           return (
             <div className="relative flex justify-start items-center">
               <Dropdown aria-label="Actions" className="bg-[#6366f1]">
@@ -111,6 +112,10 @@ const ThreeSixFivePage = () => {
     [navigateTo]
   );
 
+  const handleNavigate = () => {
+    navigateTo("/three-six-five/data-paste");
+  };
+
   return (
     <div className="p-4">
       <HeaderBox />
@@ -124,6 +129,7 @@ const ThreeSixFivePage = () => {
         initial_visible_columns={INITIAL_VISIBLE_COLUMNS}
         columns={columns}
         renderCell={renderCell}
+        handleNavigate={handleNavigate}
       />
     </div>
   );

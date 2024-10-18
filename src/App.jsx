@@ -11,6 +11,7 @@ import AuthPage from "./pages/AuthPage";
 import IbetPage from "./pages/IbetPage";
 import DataPaster from "./components/DataPaster";
 import ThreeSixFiveForm from "./components/ThreeSixFiveForm";
+import CustomForm from "./components/CustomForm";
 
 function MainApp() {
   const routeConfig = [
@@ -24,7 +25,17 @@ function MainApp() {
       children: [
         {
           path: "three-six-five/:id",
-          element: <ThreeSixFiveForm mode="View" />,
+          element: (
+            <CustomForm
+              mode="View"
+              name="three-six-five"
+              route="threesixfives"
+            />
+          ),
+        },
+        {
+          path: "ibet/:id",
+          element: <CustomForm mode="View" name="ibet" route="ibets" />,
         },
       ],
     },
@@ -37,9 +48,12 @@ function MainApp() {
         { path: "ibet", element: <IbetPage /> },
         {
           path: "three-six-five/data-paste",
-          element: <DataPaster type="Three Six Five" />,
+          element: <DataPaster type="Three Six Five" route="threesixfives" />,
         },
-
+        {
+          path: "ibet/data-paste",
+          element: <DataPaster type="ibet" route="ibets" />,
+        },
         {
           path: "three-six-five/create",
           element: <ThreeSixFiveForm mode="Create" />,

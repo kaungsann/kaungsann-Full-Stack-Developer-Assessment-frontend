@@ -33,7 +33,7 @@ export const INITIAL_VISIBLE_COLUMNS = [
   "bet_amount",
   "member_count",
   "trun_over",
-  "action",
+  "actions",
   // "agent_com",
   // "agent_total",
   // "master_agent_turnover",
@@ -157,10 +157,108 @@ export const columns = [
   },
   {
     key: "actions",
-    label: "Action",
+    label: "Actions",
+  },
+];
+
+export const initial_ibet_columns = [
+  "account",
+  "contact",
+  "cur",
+  "amount",
+  "valid_amount",
+  "bet_amount",
+  "actions",
+];
+
+export const ibet_columns = [
+  {
+    key: "account",
+    label: "Account",
   },
   {
-    key: "action",
-    label: "Action",
+    key: "contact",
+    label: "Contact",
+  },
+  {
+    key: "cur",
+    label: "Cur",
+  },
+  {
+    key: "amount",
+    label: "Amount",
+  },
+  {
+    key: "valid_amount",
+    label: "Validate Amount",
+  },
+  {
+    key: "bet_amount",
+    label: "Bet Amount",
+  },
+
+  {
+    key: "members_wl",
+    label: "Member W/L",
+  },
+  {
+    key: "members_com",
+    label: "Member Com",
+  },
+  {
+    key: "member_total",
+    label: "Members Total",
+  },
+  {
+    key: "agent_profit_wl",
+    label: "Agent ProfitW W/L",
+  },
+  {
+    key: "agent_profit_com",
+    label: "Agent ProfitW Com",
+  },
+  {
+    key: "agent_profit_total",
+    label: "Agent ProfitW Total",
+  },
+  {
+    key: "master_profit_wl",
+    label: "Master Profit W/L",
+  },
+  {
+    key: "master_profit_com",
+    label: "Master Profit Com",
+  },
+  {
+    key: "master_profit_total",
+    label: "Master Profit Total",
+  },
+  {
+    key: "senior_profit_wl",
+    label: "Senior Profit W/L",
+  },
+  {
+    key: "senior_profit_com",
+    label: "Master Agent Com",
+  },
+  {
+    key: "senior_profit_total",
+    label: "Master Agent Total",
+  },
+  {
+    key: "company_wl",
+    label: "Company W/L",
+  },
+  {
+    key: "company_com",
+    label: "Company Com",
+  },
+  {
+    key: "company_total",
+    label: "Company Total",
+  },
+  {
+    key: "actions",
+    label: "Actions",
   },
 ];

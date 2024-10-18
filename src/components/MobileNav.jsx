@@ -6,7 +6,7 @@ import {
   NavbarMenuItem,
 } from "@nextui-org/react";
 import { useState } from "react";
-import { sidebarLinks } from "../constants/sidebarLinks";
+import { sidebarLinks } from "../constants/index";
 import { Link, useLocation } from "react-router-dom";
 
 const MobileNav = () => {

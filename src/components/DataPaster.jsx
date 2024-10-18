@@ -1,17 +1,18 @@
 import PropTypes from "prop-types";
-import { Button, Textarea } from "@nextui-org/react";
+import { Textarea } from "@nextui-org/react";
 import HeaderBox from "./HeaderBox";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CustomButton from "./CustomButton";
 
-function DataPaster({ type }) {
+function DataPaster({ type, route }) {
   const [value, setValue] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:3000/v1/threesixfives", {
+      const response = await fetch(`http://localhost:3000/v1/${route}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -24,7 +25,7 @@ function DataPaster({ type }) {
 
       const data = await response.json();
       console.log("Success:", data);
-      navigate("/three-six-five");
+      navigate(`/${type}`);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -53,21 +54,21 @@ function DataPaster({ type }) {
           className="flex justify-end my-6 gap-4
         "
         >
-          <Button
+          <CustomButton
             color="primary"
             variant="ghost"
             className="rounded-md"
+            name="Back"
+            varient="flat"
             onClick={() => navigate("/three-six-five")}
-          >
-            Back
-          </Button>
-          <Button
+          />
+
+          <CustomButton
             className="bg-[#6366F1] text-white rounded-md"
-            size="md"
-            onClick={handleSubmit}
-          >
-            Add
-          </Button>
+            name="Add"
+            varient="flat"
+            onClick={() => handleSubmit()}
+          />
         </div>
       </div>
     </div>
@@ -75,6 +76,7 @@ function DataPaster({ type }) {
 }
 DataPaster.propTypes = {
   type: PropTypes.string.isRequired,
+  route: PropTypes.string.isRequired,
 };
 
 export default DataPaster;

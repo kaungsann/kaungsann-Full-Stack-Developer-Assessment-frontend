@@ -7,7 +7,6 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/react";
-import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
 
 const TopContent = ({
@@ -18,6 +17,7 @@ const TopContent = ({
   setVisibleColumns,
   onRowsPerPageChange,
   usersLength,
+  handleNavigate,
 }) => {
   const onSearchChange = (value) => {
     if (value) {
@@ -26,7 +26,6 @@ const TopContent = ({
       setFilterValue("");
     }
   };
-  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col gap-4">
@@ -68,7 +67,7 @@ const TopContent = ({
           <Button
             size="md"
             className="bg-[#6366f1] text-white"
-            onClick={() => navigate("/three-six-five/data-paste")}
+            onClick={handleNavigate}
           >
             Add Data
           </Button>
@@ -102,6 +101,7 @@ TopContent.propTypes = {
       label: PropTypes.string.isRequired,
     })
   ).isRequired,
+  handleNavigate: PropTypes.func.isRequired,
 };
 
 export default TopContent;

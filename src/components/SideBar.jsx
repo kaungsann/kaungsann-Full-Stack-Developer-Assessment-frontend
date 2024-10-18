@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/images/logo.png";
-import { sidebarLinks } from "../constants/sidebarLinks";
+import { sidebarLinks } from "../constants/index";
 
 const SideBar = () => {
   const location = useLocation();

@@ -1,6 +1,7 @@
 import { Moon, Sun } from "lucide-react";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../features/themeSlice"; // Import the toggle action
+import { toast } from "sonner";
 
 const Theme = () => {
   const dispatch = useDispatch();
@@ -8,6 +9,9 @@ const Theme = () => {
 
   const handleToggleTheme = () => {
     dispatch(toggleTheme());
+    toast.success(`change mode ${theme === "light" ? "Dark" : "Light"}`, {
+      duration: 3000,
+    });
   };
 
   return (

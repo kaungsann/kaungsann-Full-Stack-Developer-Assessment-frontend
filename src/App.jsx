@@ -10,8 +10,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 import AuthPage from "./pages/AuthPage";
 import IbetPage from "./pages/IbetPage";
 import DataPaster from "./components/DataPaster";
-import ThreeSixFiveForm from "./components/ThreeSixFiveForm";
 import CustomForm from "./components/CustomForm";
+import { Toaster } from "sonner";
 
 function MainApp() {
   const routeConfig = [
@@ -56,15 +56,15 @@ function MainApp() {
         },
         {
           path: "three-six-five/create",
-          element: <ThreeSixFiveForm mode="Create" />,
+          element: <CustomForm mode="Create" />,
         },
         {
           path: "three-six-five/edit",
-          element: <ThreeSixFiveForm mode="Edit" />,
+          element: <CustomForm mode="Edit" />,
         },
         {
           path: "three-six-five/delete",
-          element: <ThreeSixFiveForm mode="Delete" />,
+          element: <CustomForm mode="Delete" />,
         },
       ],
     },
@@ -93,6 +93,7 @@ function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+        <Toaster richColors position="top-center" />
         <MainApp />
       </PersistGate>
     </Provider>

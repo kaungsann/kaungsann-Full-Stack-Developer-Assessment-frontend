@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import { sidebarLinks } from "../constants/index";
+import Footer from "./Footer";
 
 const SideBar = () => {
   const location = useLocation();
@@ -10,7 +11,7 @@ const SideBar = () => {
       <nav className="flex flex-col gap-4">
         <Link to="/" className="mb-8 cursor-pointer flex items-center gap-2">
           <img src={logo} alt="win-track-logo" className="w-20 h-12" />
-          <h1 className="text-lg font-serif font-semibold">Win Tracker</h1>
+          <h1 className="text-xl font-sans font-bold">Win Tracker</h1>
         </Link>
 
         {sidebarLinks.map((item) => {
@@ -41,6 +42,7 @@ const SideBar = () => {
           );
         })}
       </nav>
+      <Footer />
     </section>
   );
 };

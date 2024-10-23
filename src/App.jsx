@@ -2,7 +2,7 @@ import { Suspense, useEffect } from "react";
 import { Provider, useSelector } from "react-redux";
 import { store, persistor } from "./store";
 import { PersistGate } from "redux-persist/integration/react";
-import { useRoutes } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 import UnauthorizePage from "./pages/UnauthorizePage";
 import ThreeSixFivePage from "./pages/ThreeSixFivePage";
 import PrivateRoute from "./components/PrivateRoute";
@@ -15,13 +15,14 @@ import { Toaster } from "sonner";
 
 function MainApp() {
   const routeConfig = [
+    { path: "/", element: <Navigate to="three-six-five" /> },
     { path: "/register", element: <AuthPage type="register" /> },
     { path: "/login", element: <AuthPage type="login" /> },
     { path: "/401-unauthorized", element: <UnauthorizePage /> },
 
     {
       path: "/",
-      element: <PrivateRoute roles={["admin", "user"]} />,
+      element: <PrivateRoute roles={["admin", "agent", "superuser"]} />,
       children: [
         {
           path: "three-six-five/:id",
@@ -42,7 +43,7 @@ function MainApp() {
 
     {
       path: "/",
-      element: <PrivateRoute roles={["admin", "user"]} />,
+      element: <PrivateRoute roles={["admin", "agent", "superuser"]} />,
       children: [
         { path: "three-six-five", element: <ThreeSixFivePage /> },
         { path: "ibet", element: <IbetPage /> },

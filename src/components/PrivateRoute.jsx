@@ -5,8 +5,9 @@ import AppContainer from "../AppContainer";
 
 const PrivateRoute = ({ roles }) => {
   const { isLoggedIn, user } = useAuth();
-  // const currentRole = user?.role;
-  const currentRole = "admin";
+  const currentRole = user?.role;
+
+  console.log("user is a", user);
 
   return isLoggedIn ? (
     roles && !roles.includes(currentRole) ? (
@@ -17,11 +18,7 @@ const PrivateRoute = ({ roles }) => {
       </AppContainer>
     )
   ) : (
-    // <Navigate to="/login" replace />
-
-    <AppContainer>
-      <Outlet />
-    </AppContainer>
+    <Navigate to="/login" replace />
   );
 };
 

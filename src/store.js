@@ -17,7 +17,7 @@ import {
 } from "redux-persist";
 import authReducer from "./features/authSlice";
 import themeReducer from "./features/themeSlice";
-import { authApi } from "./services/authAPI";
+import { authApi } from "./services/authApi";
 import { userApi } from "./services/userAPI";
 
 export const resetStore = createAction("RESET_STORE");
@@ -41,8 +41,6 @@ const resettableReducer = (state, action) => {
   }
   return rootReducer(state, action);
 };
-
-//  const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const persistedReducer = persistReducer(persistConfig, resettableReducer);
 

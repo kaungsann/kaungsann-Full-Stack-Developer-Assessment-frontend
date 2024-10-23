@@ -1,10 +1,19 @@
 import PropTypes from "prop-types";
 import { Input } from "@nextui-org/react";
 
-function CustomInput({ name, label, placeholder, className, value }) {
+function CustomInput({
+  name,
+  label,
+  placeholder,
+  className,
+  value,
+  register,
+  error,
+}) {
   return (
     <>
       <Input
+        {...register(name)}
         type={name}
         variant="bordered"
         label={label}
@@ -12,6 +21,8 @@ function CustomInput({ name, label, placeholder, className, value }) {
         className={`${className}`}
         labelPlacement="outside"
         value={value}
+        status={error ? "error" : "default"}
+        helperText={error?.message}
       />
     </>
   );
@@ -23,6 +34,8 @@ CustomInput.propTypes = {
   placeholder: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
   value: PropTypes.string,
+  register: PropTypes.func.isRequired,
+  error: PropTypes.object,
 };
 
 export default CustomInput;

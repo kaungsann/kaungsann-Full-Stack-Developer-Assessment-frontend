@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/react";
+import { Button, Spinner } from "@nextui-org/react";
 import PropTypes from "prop-types";
 
 function CustomButton({
@@ -6,17 +6,21 @@ function CustomButton({
   className,
   variant,
   color,
-  onClick = (fn) => fn,
+  onClick,
+  loading,
+  type,
 }) {
   return (
     <>
       <Button
+        type={type}
         color={color}
         variant={variant}
         className={`${className}`}
         onClick={onClick}
+        disabled={loading}
       >
-        {name}
+        {loading ? <Spinner size="md" color="secondary" /> : name}
       </Button>
     </>
   );
@@ -27,7 +31,9 @@ CustomButton.propTypes = {
   className: PropTypes.string.isRequired,
   variant: PropTypes.string.isRequired,
   color: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+  loading: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 export default CustomButton;

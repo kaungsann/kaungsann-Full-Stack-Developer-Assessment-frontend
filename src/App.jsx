@@ -4,71 +4,40 @@ import { store, persistor } from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 import { Navigate, useRoutes } from "react-router-dom";
 import UnauthorizePage from "./pages/UnauthorizePage";
-import ThreeSixFivePage from "./pages/ThreeSixFivePage";
 import PrivateRoute from "./components/PrivateRoute";
 import NotFoundPage from "./pages/NotFoundPage";
 import AuthPage from "./pages/AuthPage";
-import IbetPage from "./pages/IbetPage";
-import DataPaster from "./components/DataPaster";
-import CustomForm from "./components/CustomForm";
 import { Toaster } from "sonner";
+import ChannelPage from "./pages/ChannelPage";
+import MessagePage from "./pages/MessagePage";
+import NotiPage from "./pages/NotiPage";
 
 function MainApp() {
   const routeConfig = [
-    { path: "/", element: <Navigate to="three-six-five" /> },
+    { path: "/", element: <Navigate to="channels" /> },
     { path: "/register", element: <AuthPage type="register" /> },
     { path: "/login", element: <AuthPage type="login" /> },
     { path: "/401-unauthorized", element: <UnauthorizePage /> },
 
     {
       path: "/",
-      element: <PrivateRoute roles={["admin", "agent", "superuser"]} />,
+      element: <PrivateRoute roles={["admin", "guest", "trader"]} />,
       children: [
         {
-          path: "three-six-five/:id",
-          element: (
-            <CustomForm
-              mode="View"
-              name="three-six-five"
-              route="threesixfives"
-            />
-          ),
+          path: "channels",
+          element: <ChannelPage />,
         },
         {
-          path: "ibet/:id",
-          element: <CustomForm mode="View" name="ibet" route="ibets" />,
+          path: "/messages",
+          element: <MessagePage />,
+        },
+        {
+          path: "/notifications",
+          element: <NotiPage />,
         },
       ],
     },
 
-    {
-      path: "/",
-      element: <PrivateRoute roles={["admin", "agent", "superuser"]} />,
-      children: [
-        { path: "three-six-five", element: <ThreeSixFivePage /> },
-        { path: "ibet", element: <IbetPage /> },
-        {
-          path: "three-six-five/data-paste",
-          element: <DataPaster type="Three Six Five" route="threesixfives" />,
-        },
-        {
-          path: "ibet/data-paste",
-          element: <DataPaster type="ibet" route="ibets" />,
-        },
-        {
-          path: "three-six-five/create",
-          element: <CustomForm mode="Create" />,
-        },
-        {
-          path: "three-six-five/edit",
-          element: <CustomForm mode="Edit" />,
-        },
-        {
-          path: "three-six-five/delete",
-          element: <CustomForm mode="Delete" />,
-        },
-      ],
-    },
     { path: "*", element: <NotFoundPage /> },
   ];
 

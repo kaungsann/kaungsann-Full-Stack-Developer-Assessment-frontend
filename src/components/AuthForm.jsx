@@ -45,6 +45,7 @@ function AuthForm({ type }) {
 
   //user login handle
   const handleLoginFormSubmit = async (data) => {
+    console.log("login data is a", data);
     try {
       const credentials = await login(data).unwrap();
       console.log("login success daata is a", credentials);
@@ -69,9 +70,6 @@ function AuthForm({ type }) {
         </div>
         <header className="w-3/4 lg:w-2/4	mx-auto p-4">
           <img src={logo} alt="logo" className="w-60 h-40 mx-auto mb-8" />
-          <h2 className="text-center font-sans text-2xl mb-12 font-bold">
-            Win Tracker
-          </h2>
 
           {type === "login" ? (
             <>
@@ -128,14 +126,6 @@ function AuthForm({ type }) {
                   className="w-full mb-12"
                   register={register}
                   error={errors.email}
-                />
-                <CustomInput
-                  name="phone"
-                  label="Phone Number"
-                  placeholder="09 --- --- ---"
-                  className="w-full mb-12"
-                  register={register}
-                  error={errors.phone}
                 />
                 <CustomInput
                   name="password"

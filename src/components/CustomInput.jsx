@@ -34,7 +34,7 @@ CustomInput.propTypes = {
   placeholder: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
   value: PropTypes.string,
-  register: PropTypes.func.isRequired,
+  register: PropTypes.func,
   error: PropTypes.object,
 };
 

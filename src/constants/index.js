@@ -1,28 +1,22 @@
-import threeSixFive from "../assets/images/365.png";
-import ibetIcon from "../assets/images/ibet.png";
-import sideBarIcon3 from "../assets/images/logo.png";
-import sideBarIcon4 from "../assets/images/logo.png";
+import Home from "../assets/images/home.png";
+import Noti from "../assets/images/noti.png";
+import Message from "../assets/images/message.png";
 
 export const sidebarLinks = [
   {
-    imgURL: threeSixFive,
-    route: "/three-six-five",
-    label: "365",
+    imgURL: Home,
+    route: "/channels",
+    label: "Channels",
   },
   {
-    imgURL: ibetIcon,
-    route: "/ibet",
-    label: "IBET",
+    imgURL: Message,
+    route: "/messages",
+    label: "Message",
   },
   {
-    imgURL: sideBarIcon3,
-    route: "/transaction-history",
-    label: "Transaction History",
-  },
-  {
-    imgURL: sideBarIcon4,
-    route: "/payment-transfer",
-    label: "Transfer Funds",
+    imgURL: Noti,
+    route: "/notifications",
+    label: "Noti",
   },
 ];
 

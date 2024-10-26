@@ -10,8 +10,8 @@ const SideBar = () => {
     <section className="sidebar bg-white dark:bg-[#020817]">
       <nav className="flex flex-col gap-4">
         <Link to="/" className="mb-8 cursor-pointer flex items-center gap-2">
-          <img src={logo} alt="win-track-logo" className="w-20 h-12" />
-          <h1 className="text-xl font-sans font-bold">Win Tracker</h1>
+          <img src={logo} alt="win-track-logo" className="max-w-20 max-h-12" />
+          <h1 className="text-lg 2xl:text-xl  font-sans font-bold">Talk</h1>
         </Link>
 
         {sidebarLinks.map((item) => {
@@ -42,7 +42,10 @@ const SideBar = () => {
           );
         })}
       </nav>
-      <Footer />
+      <Footer
+        className="w-full flex justify-between items-center"
+        blockImg={true}
+      />
     </section>
   );
 };

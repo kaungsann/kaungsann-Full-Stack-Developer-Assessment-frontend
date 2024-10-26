@@ -8,6 +8,7 @@ import {
 import { useState } from "react";
 import { sidebarLinks } from "../constants/index";
 import { Link, useLocation } from "react-router-dom";
+import Footer from "./Footer";
 
 const MobileNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,6 +26,13 @@ const MobileNav = () => {
       </NavbarContent>
 
       <NavbarMenu className="dark:bg-[#020817] bg-gray-100">
+        <div className="w-full justify-end">
+          <Footer
+            className="flex justify-between items-center"
+            blockImg={false}
+          />
+        </div>
+
         {sidebarLinks.map((item) => {
           const isActive =
             location.pathname === item.route ||

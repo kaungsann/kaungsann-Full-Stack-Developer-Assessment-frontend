@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import logo from "../assets/images/logo.png";
 import { LogOut } from "lucide-react";
 import { useLogoutMutation } from "../services/authApi";
@@ -9,7 +10,7 @@ import { useDisclosure } from "@nextui-org/react";
 import { resetStore } from "../store";
 import { toast } from "sonner";
 
-function Footer() {
+function Footer({ className, blockImg }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user, tokens } = useAuth();
   const [logout] = useLogoutMutation();
@@ -32,9 +33,15 @@ function Footer() {
   };
   return (
     <>
-      <div className="flex items-center">
-        <img src={logo} className="w-18 h-10" />
-        <div className="ml-4">
+      <div className={`${className}`}>
+        {blockImg && (
+          <img
+            src={logo}
+            className="w-12 h-8 lg:w-18 lg:h-10 md:hidden 2xl:block"
+          />
+        )}
+
+        <div className="lg:ml-4">
           <h2 className="text-md font-bold font-sans">{user?.username}</h2>
           <span className="text-sm font-semibold font-sans opacity-75">
             {user?.email}
@@ -60,5 +67,10 @@ function Footer() {
     </>
   );
 }
+
+Footer.propTypes = {
+  className: PropTypes.string.isRequired,
+  blockImg: PropTypes.bool.isRequired,
+};
 
 export default Footer;

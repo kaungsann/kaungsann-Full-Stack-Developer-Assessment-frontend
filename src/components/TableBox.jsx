@@ -13,6 +13,7 @@ import {
 import BottonContent from "./BottomContent";
 import React, { useMemo } from "react";
 import TopContent from "./TopContent";
+import { toast } from "sonner";
 
 const TableBox = ({
   totalPages,
@@ -25,6 +26,8 @@ const TableBox = ({
   columns,
   renderCell,
   handleNavigate,
+  isLoading,
+  error,
 }) => {
   const [visibleColumns, setVisibleColumns] = React.useState(
     new Set(initial_visible_columns)
@@ -38,7 +41,9 @@ const TableBox = ({
     );
   }, [visibleColumns, columns, initial_visible_columns]);
 
-  console.log("result is a", initial_visible_columns);
+  if (error) {
+    toast.error(`${error.data.message}`);
+  }
 
   return (
     <>
@@ -69,17 +74,7 @@ const TableBox = ({
           </TableHeader>
         </TableHeader>
         <TableBody items={results}>
-          {/* {(item) => (
-            <TableRow key={item.id}>
-              {(columnKey) => (
-                <TableCell key={columnKey}>
-                  {renderCell(item, columnKey)}
-                </TableCell>
-              )}
-            </TableRow>
-          )} */}
-          {/* //loading || */}
-          {results.length === 0
+          {isLoading
             ? // Render skeleton rows when loading or when there are no results
               Array.from({ length: 10 }).map((_, index) => (
                 <TableRow key={index}>
@@ -127,6 +122,8 @@ TableBox.propTypes = {
   ).isRequired,
   renderCell: PropTypes.func,
   handleNavigate: PropTypes.func,
+  isLoading: PropTypes.bool,
+  error: PropTypes.bool,
 };
 
 export default TableBox;

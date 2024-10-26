@@ -1,8 +1,9 @@
+import HeaderBox from "../components/HeaderBox";
 const ChannelPage = () => {
   return (
-    <>
-      <div>ChannelPage</div>
-    </>
+    <div className="p-6">
+      <HeaderBox />
+    </div>
   );
 };
 

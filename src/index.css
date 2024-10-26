@@ -85,7 +85,10 @@
   }
 
   .sidebar {
-    @apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-gray-100 pt-8  max-md:hidden shadow-sm sm:p-4 xl:p-6 2xl:w-[355px];
+    @apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-gray-100 pt-8  max-md:hidden shadow-sm sm:p-4 xl:p-6 2xl:w-[100px];
+  }
+  .secsidebar {
+    @apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-gray-100 pt-8 shadow-sm sm:p-4 xl:p-6 2xl:w-[550px];
   }
 
   .root-layout {
@@ -93,9 +96,5 @@
   }
   .sidebar-logo {
     @apply 2xl:text-26 text-[26px] font-bold max-xl:hidden;
-  }
-
-  .sidebar-link {
-    @apply flex gap-3 items-center py-1 md:p-2 2xl:p-3 rounded-md justify-center xl:justify-start;
   }
 }

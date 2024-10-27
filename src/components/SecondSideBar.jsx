@@ -1,14 +1,23 @@
-import Footer from "./Footer";
+import { useGetChannelsQuery } from "../services/channelApi";
+import DataBox from "./DataBox";
 
 const SecondSideBar = () => {
+  const {
+    data: channels,
+    isLoading: isChannelLoading,
+    error: channelError,
+  } = useGetChannelsQuery();
+
+  console.log("channels is a", channels?.results);
+
   return (
     <>
       <section className="secsidebar bg-white dark:bg-[#020817]">
-        <h2>Second Side Bar</h2>
-
-        <Footer
-          className="w-full flex justify-between items-center"
-          blockImg={true}
+        <DataBox
+          name="Channels"
+          data={channels?.results}
+          isLoading={isChannelLoading}
+          error={channelError}
         />
       </section>
     </>

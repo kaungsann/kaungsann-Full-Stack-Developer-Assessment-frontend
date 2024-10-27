@@ -2,10 +2,7 @@ import { useCallback, useState } from "react";
 import HeaderBox from "../components/HeaderBox";
 
 import TableBox from "../components/TableBox";
-import {
-  CHANNEL_INITIAL_VISIBLE_COLUMNS,
-  channel_columns,
-} from "../constants/index";
+import { INITIAL_VISIBLE_COLUMNS, columns } from "../constants/index";
 import {
   Button,
   Dropdown,
@@ -15,9 +12,9 @@ import {
 } from "@nextui-org/react";
 import { Ellipsis } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useGetChannelsQuery } from "../services/channelApi";
+import { useGetUsersQuery } from "../services/userApi";
 
-const ChannelPage = () => {
+const UserPage = () => {
   const [page, setPage] = useState(1);
 
   const [selectedQueies, setSelectedQueies] = useState({
@@ -26,9 +23,9 @@ const ChannelPage = () => {
 
   const navigateTo = useNavigate();
 
-  const { data: channels } = useGetChannelsQuery();
+  const { data: users } = useGetUsersQuery();
 
-  console.log("user data is a", channels);
+  console.log("user data is a", users);
 
   const paginatePage = (pg) => {
     setPage(pg);
@@ -45,12 +42,12 @@ const ChannelPage = () => {
       const cellValue = datas[columnKey];
 
       switch (columnKey) {
-        case "name":
+        case "username":
           return <div>{datas?.username}</div>;
-        case "create_by":
-          return <h3>{datas?.create_by?.name}</h3>;
-        case "members":
-          return <h3>{datas?.members.length}</h3>;
+        case "email":
+          return <h3>{datas?.email}</h3>;
+        case "role":
+          return <h3>{datas?.role}</h3>;
         case "actions":
           return (
             <div className="relative flex justify-start items-center">
@@ -63,14 +60,14 @@ const ChannelPage = () => {
                 <DropdownMenu aria-label="Action Items" className="text-white">
                   <DropdownItem
                     onPress={() => {
-                      navigateTo(`/channels/edit/${datas.id}`);
+                      navigateTo(`/users/edit/${datas.id}`);
                     }}
                   >
                     Edit
                   </DropdownItem>
                   <DropdownItem
                     onPress={() => {
-                      navigateTo(`/channels/delete/${datas.id}`);
+                      navigateTo(`/users/delete/${datas.id}`);
                     }}
                   >
                     Delete
@@ -87,21 +84,21 @@ const ChannelPage = () => {
   );
 
   const handleNavigate = () => {
-    navigateTo("/channels/create");
+    navigateTo("/users/create");
   };
 
   return (
     <div className="p-4">
       <HeaderBox />
       <TableBox
-        totalPages={channels?.totalPages}
-        page={channels?.page}
-        results={channels?.results}
+        totalPages={users?.totalPages}
+        page={users?.page}
+        results={users?.results}
         selectedQueries={selectedQueies}
         onFilter={handleFilterChange}
         paginatePage={paginatePage}
-        initial_visible_columns={CHANNEL_INITIAL_VISIBLE_COLUMNS}
-        columns={channel_columns}
+        initial_visible_columns={INITIAL_VISIBLE_COLUMNS}
+        columns={columns}
         renderCell={renderCell}
         handleNavigate={handleNavigate}
       />
@@ -109,4 +106,4 @@ const ChannelPage = () => {
   );
 };
 
-export default ChannelPage;
+export default UserPage;

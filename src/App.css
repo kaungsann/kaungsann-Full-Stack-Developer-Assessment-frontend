@@ -16,10 +16,13 @@ body::-webkit-scrollbar-track {
   background-color: lightgray;
 }
 
+/* Hide scrollbar in WebKit-based browsers */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 0px;
+  display: none;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #f9fafb;
+/* General hide scrollbar styling */
+.custom-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

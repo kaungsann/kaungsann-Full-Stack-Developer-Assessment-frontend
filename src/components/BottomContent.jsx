@@ -17,7 +17,7 @@ const BottomContent = ({ page, totalPages, setPage, selectedKeys }) => {
           cursor: "bg-[#6366F1]",
         }}
       />
-      <span>{selectedKeys === "all" ? "All items selected" : ` selected`}</span>
+      <span>{selectedKeys === "all" ? "All items selected" : ` `}</span>
     </div>
   );
 };

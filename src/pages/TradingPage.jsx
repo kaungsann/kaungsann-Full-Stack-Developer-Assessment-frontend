@@ -3,8 +3,8 @@ import HeaderBox from "../components/HeaderBox";
 
 import TableBox from "../components/TableBox";
 import {
-  CHANNEL_INITIAL_VISIBLE_COLUMNS,
-  channel_columns,
+  FOREX_INITIAL_VISIBLE_COLUMNS,
+  forex_columns,
 } from "../constants/index";
 import {
   Button,
@@ -15,9 +15,9 @@ import {
 } from "@nextui-org/react";
 import { Ellipsis } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useGetChannelsQuery } from "../services/channelApi";
+import { useGetForexsQuery } from "../services/forexApi";
 
-const ChannelPage = () => {
+const TradingPage = () => {
   const [page, setPage] = useState(1);
 
   const [selectedQueies, setSelectedQueies] = useState({
@@ -26,9 +26,7 @@ const ChannelPage = () => {
 
   const navigateTo = useNavigate();
 
-  const { data: channels } = useGetChannelsQuery();
-
-  console.log("user data is a", channels);
+  const { data: forexs } = useGetForexsQuery();
 
   const paginatePage = (pg) => {
     setPage(pg);
@@ -45,12 +43,10 @@ const ChannelPage = () => {
       const cellValue = datas[columnKey];
 
       switch (columnKey) {
-        case "name":
-          return <div>{datas?.username}</div>;
-        case "create_by":
-          return <h3>{datas?.create_by?.name}</h3>;
-        case "members":
-          return <h3>{datas?.members.length}</h3>;
+        case "pair":
+          return <div>{datas?.pair}</div>;
+        case "price":
+          return <h3>{datas?.price}</h3>;
         case "actions":
           return (
             <div className="relative flex justify-start items-center">
@@ -63,14 +59,14 @@ const ChannelPage = () => {
                 <DropdownMenu aria-label="Action Items" className="text-white">
                   <DropdownItem
                     onPress={() => {
-                      navigateTo(`/channels/edit/${datas.id}`);
+                      navigateTo(`/forexs/edit/${datas.id}`);
                     }}
                   >
                     Edit
                   </DropdownItem>
                   <DropdownItem
                     onPress={() => {
-                      navigateTo(`/channels/delete/${datas.id}`);
+                      navigateTo(`/forexs/delete/${datas.id}`);
                     }}
                   >
                     Delete
@@ -87,21 +83,21 @@ const ChannelPage = () => {
   );
 
   const handleNavigate = () => {
-    navigateTo("/channels/create");
+    navigateTo("/forexs/create");
   };
 
   return (
     <div className="p-4">
       <HeaderBox />
       <TableBox
-        totalPages={channels?.totalPages}
-        page={channels?.page}
-        results={channels?.results}
+        totalPages={forexs?.totalPages}
+        page={forexs?.page}
+        results={forexs?.results}
         selectedQueries={selectedQueies}
         onFilter={handleFilterChange}
         paginatePage={paginatePage}
-        initial_visible_columns={CHANNEL_INITIAL_VISIBLE_COLUMNS}
-        columns={channel_columns}
+        initial_visible_columns={FOREX_INITIAL_VISIBLE_COLUMNS}
+        columns={forex_columns}
         renderCell={renderCell}
         handleNavigate={handleNavigate}
       />
@@ -109,4 +105,4 @@ const ChannelPage = () => {
   );
 };
 
-export default ChannelPage;
+export default TradingPage;

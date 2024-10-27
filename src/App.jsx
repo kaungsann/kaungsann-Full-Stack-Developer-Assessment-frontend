@@ -11,6 +11,12 @@ import { Toaster } from "sonner";
 import ChannelPage from "./pages/ChannelPage";
 import MessagePage from "./pages/MessagePage";
 import NotiPage from "./pages/NotiPage";
+import TradingPage from "./pages/TradingPage";
+import ChannelForm from "./components/ChannelForm";
+import ChannelList from "./components/ChannelList";
+import UserPage from "./pages/userPage";
+import UserForm from "./components/UserForm";
+import ForexForm from "./components/ForexForm";
 
 function MainApp() {
   const routeConfig = [
@@ -24,8 +30,56 @@ function MainApp() {
       element: <PrivateRoute roles={["admin", "guest", "trader"]} />,
       children: [
         {
+          path: "users/list",
+          element: <UserPage />,
+        },
+        {
+          path: "users/create",
+          element: <UserForm mode="Create" />,
+        },
+        {
+          path: "users/edit/:id",
+          element: <UserForm mode="Edit" />,
+        },
+        {
+          path: "users/delete/:id",
+          element: <UserForm mode="Delete" />,
+        },
+        {
           path: "channels",
           element: <ChannelPage />,
+        },
+        {
+          path: "/channels/list",
+          element: <ChannelList />,
+        },
+        {
+          path: "/channels/create",
+          element: <ChannelForm mode="Create" />,
+        },
+        {
+          path: "/channels/create",
+          element: <ChannelForm mode="Edit" />,
+        },
+        {
+          path: "/channels/delete",
+          element: <ChannelForm mode="Delete" />,
+        },
+        {
+          path: "/trading/list",
+          element: <TradingPage />,
+        },
+        {
+          path: "/forexs/create",
+          element: <ForexForm mode="Create" />,
+        },
+        {
+          path: "/forexs/edit/:id",
+          element: <ForexForm mode="Edit" />,
+        },
+        {
+          path: "/forexs/delete/:id",
+          element: <ForexForm mode="Delete" />,
         },
         {
           path: "/messages",

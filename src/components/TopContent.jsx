@@ -74,7 +74,7 @@ const TopContent = ({
         </div>
       </div>
       <div className="flex justify-between items-center">
-        <span>Total {usersLength} users</span>
+        <span>Total {usersLength} </span>
         <label>
           Rows per page:
           <select onChange={onRowsPerPageChange}>

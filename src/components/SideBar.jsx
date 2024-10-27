@@ -1,9 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import { sidebarLinks } from "../constants/index";
+import { Plus, UsersRound } from "lucide-react";
+import { useAuth } from "../hooks/useAuth";
 
 const SideBar = () => {
   const location = useLocation();
+  const { user } = useAuth();
 
   return (
     <section className="sidebar bg-white dark:bg-[#020817]">
@@ -12,8 +15,7 @@ const SideBar = () => {
           to="/"
           className="mb-8 cursor-pointer flex flex-col items-center gap-2"
         >
-          <img src={logo} alt="talk-logo" className="max-w-20 max-h-12" />
-          <h1 className="text-lg 2xl:text-xl font-sans font-bold">Talk</h1>
+          <img src={logo} alt="talk-logo" className="max-w-32 max-h-18" />
         </Link>
 
         {sidebarLinks.map((item) => {
@@ -25,8 +27,9 @@ const SideBar = () => {
             <Link
               to={item.route}
               key={item.label}
-              className={`flex flex-col items-center mb-6
-                 ${isActive ? "text-[#6366f1]" : ""}`}
+              className={`flex flex-col items-center mb-6 ${
+                isActive ? "text-[#6366f1]" : ""
+              }`}
             >
               <div>
                 <img
@@ -42,6 +45,23 @@ const SideBar = () => {
           );
         })}
       </nav>
+
+      <div className="w-full flex flex-col justify-center items-center">
+        {user && user.role === "admin" && (
+          <Link
+            to="/users/list"
+            className="flex justify-center cursor-pointer hover:opacity-75 items-center w-12 h-12 rounded-full mb-10 bg-[#6366f1]"
+          >
+            <UsersRound />
+          </Link>
+        )}
+        <Link
+          to="/channels/create"
+          className="flex justify-center cursor-pointer hover:opacity-75 items-center w-12 h-12 rounded-full mb-10 bg-[#6366f1]"
+        >
+          <Plus className="text-3xl text-white" />
+        </Link>
+      </div>
     </section>
   );
 };

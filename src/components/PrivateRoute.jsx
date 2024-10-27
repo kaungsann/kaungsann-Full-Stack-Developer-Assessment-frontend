@@ -7,8 +7,6 @@ const PrivateRoute = ({ roles }) => {
   const { isLoggedIn, user } = useAuth();
   const currentRole = user?.role;
 
-  console.log("user is a", user);
-
   return isLoggedIn ? (
     roles && !roles.includes(currentRole) ? (
       <Navigate to="/401-unauthorized" replace />

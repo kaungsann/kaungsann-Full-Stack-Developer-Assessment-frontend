@@ -54,7 +54,7 @@ function AuthForm({ type }) {
           duration: 5000,
         });
         dispatch(setCredentials(credentials));
-        navigateTo("/three-six-five");
+        navigateTo("/channels");
       }
     } catch (error) {
       toast.error(`😞 ${error.message || isLoginError.data.message}`, {

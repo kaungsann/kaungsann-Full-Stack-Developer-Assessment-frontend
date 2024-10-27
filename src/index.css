@@ -85,10 +85,13 @@
   }
 
   .sidebar {
-    @apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-gray-100 pt-8  max-md:hidden shadow-sm sm:p-4 xl:p-6 2xl:w-[100px];
+    @apply sticky left-0 top-0 flex h-screen  flex-col justify-between border-r border-gray-100 pt-8  max-md:hidden shadow-sm sm:p-4 w-[100px];
   }
   .secsidebar {
-    @apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-gray-100 pt-8 shadow-sm sm:p-4 xl:p-6 2xl:w-[550px];
+    @apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-gray-100 pt-8 shadow-sm sm:p-4 xl:p-6 2xl:w-[450px];
+  }
+  .right-side-bar {
+    @apply sticky left-0 top-0 flex h-screen w-fit flex-col border-r border-gray-100 pt-8 shadow-sm sm:p-4 xl:p-6 2xl:w-[400px];
   }
 
   .root-layout {

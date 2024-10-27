@@ -18,7 +18,9 @@ import {
 import authReducer from "./features/authSlice";
 import themeReducer from "./features/themeSlice";
 import { authApi } from "./services/authApi";
-import { userApi } from "./services/userAPI";
+import { userApi } from "./services/userApi";
+import { forexApi } from "./services/forexApi";
+import { channelApi } from "./services/channelApi";
 
 export const resetStore = createAction("RESET_STORE");
 
@@ -33,6 +35,8 @@ const rootReducer = combineReducers({
   theme: themeReducer,
   [authApi.reducerPath]: authApi.reducer,
   [userApi.reducerPath]: userApi.reducer,
+  [forexApi.reducerPath]: forexApi.reducer,
+  [channelApi.reducerPath]: channelApi.reducer,
 });
 
 const resettableReducer = (state, action) => {
@@ -51,7 +55,12 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(authApi.middleware, userApi.middleware),
+    }).concat(
+      authApi.middleware,
+      userApi.middleware,
+      channelApi.middleware,
+      forexApi.middleware
+    ),
 });
 
 const persistor = persistStore(store);

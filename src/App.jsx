@@ -13,7 +13,6 @@ import MessagePage from "./pages/MessagePage";
 import NotiPage from "./pages/NotiPage";
 import TradingPage from "./pages/TradingPage";
 import ChannelForm from "./components/ChannelForm";
-import ChannelList from "./components/ChannelList";
 import UserPage from "./pages/userPage";
 import UserForm from "./components/UserForm";
 import ForexForm from "./components/ForexForm";
@@ -48,10 +47,6 @@ function MainApp() {
         {
           path: "channels",
           element: <ChannelPage />,
-        },
-        {
-          path: "/channels/list",
-          element: <ChannelList />,
         },
         {
           path: "/channels/create",

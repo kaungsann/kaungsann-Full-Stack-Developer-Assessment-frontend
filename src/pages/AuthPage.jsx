@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import authImg from "../assets/images/auth-image.svg";
+import authImg from "../assets/images/auth.png";
 
 import AuthForm from "../components/AuthForm";
 
@@ -14,7 +14,7 @@ function AuthPage({ type }) {
         )}
 
         <div className="auth-asset">
-          <img src={authImg} alt="auth-image" className="w-4/5 h-3/4" />
+          <img src={authImg} alt="auth-image" className="w-full h-3/4" />
         </div>
       </main>
     </>

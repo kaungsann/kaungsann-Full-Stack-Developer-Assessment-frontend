@@ -4,32 +4,27 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import CustomInput from "./CustomInput";
 import CustomSelection from "./CustomSelection";
-import { useGetUserByIdQuery, useGetUsersQuery } from "../services/userAPI";
+import { useGetUsersQuery } from "../services/userApi";
 import CustomButton from "./CustomButton";
 import { ArrowBigRightDash } from "lucide-react";
-import {
-  useUpdateChannelMutation,
-  useAddChannelMutation,
-  useDeleteChannelMutation,
-  useGetChannelsByIdQuery,
-} from "../services/channelApi";
+
 import { toast } from "sonner";
 
 const ChannelForm = ({ mode }) => {
   const { id } = useParams();
   const navigateTo = useNavigate();
-  const {
-    data: usersData,
-    isLoading: isUsersLoading,
-    error: usersError,
-  } = useGetUsersQuery();
+  // const {
+  //   data: usersData,
+  //   isLoading: isUsersLoading,
+  //   error: usersError,
+  // } = useGetUsersQuery();
 
-  const [addChannel, { isLoading: isUpdating, error: updateError }] =
-    useAddChannelMutation();
-  const [updateChannel, { isLoading: isInserting, error: insertError }] =
-    useUpdateChannelMutation();
-  const [deleteChannel, { isLoading: isDeleting, error: deleteError }] =
-    useDeleteChannelMutation();
+  // const [addChannel, { isLoading: isUpdating, error: updateError }] =
+  //   useAddChannelMutation();
+  // const [updateChannel, { isLoading: isInserting, error: insertError }] =
+  //   useUpdateChannelMutation();
+  // const [deleteChannel, { isLoading: isDeleting, error: deleteError }] =
+  //   useDeleteChannelMutation();
 
   // const { data: userById, isLoading: isUserIdLoading } = useGetUserByIdQuery(
   //   id,
@@ -89,18 +84,18 @@ const ChannelForm = ({ mode }) => {
     }
   };
 
-  if (usersError) {
-    toast.error(usersError.data?.message || "Failed to add channel");
-  }
-  if (insertError) {
-    toast.error(insertError.data?.message || "Failed to add channel");
-  }
-  if (updateError) {
-    toast.error(updateError.data?.message || "Failed to update channel");
-  }
-  if (deleteError) {
-    toast.error(deleteError.data?.message || "Failed to delete channel");
-  }
+  // if (usersError) {
+  //   toast.error(usersError.data?.message || "Failed to add channel");
+  // }
+  // if (insertError) {
+  //   toast.error(insertError.data?.message || "Failed to add channel");
+  // }
+  // if (updateError) {
+  //   toast.error(updateError.data?.message || "Failed to update channel");
+  // }
+  // if (deleteError) {
+  //   toast.error(deleteError.data?.message || "Failed to delete channel");
+  // }
   return (
     <div className="p-4">
       <HeaderBox />
@@ -111,7 +106,9 @@ const ChannelForm = ({ mode }) => {
           <ArrowBigRightDash className="mx-4 text-[#6366f1]" />
           <span>{mode}</span>
         </div>
-        <form className="w-[400px]" onSubmit={handleSubmit(onSubmit)}>
+
+        {/* onSubmit={handleSubmit(onSubmit)}? */}
+        <form className="w-[400px]">
           <CustomInput
             name="name"
             label="Name"
@@ -121,9 +118,9 @@ const ChannelForm = ({ mode }) => {
             error={errors.name}
           />
           <CustomSelection
-            options={usersData?.results}
+            // options={usersData?.results}
             onChange={(v) => setValue("created_by", v)}
-            isLoading={isUsersLoading}
+            //  isLoading={isUsersLoading}
             // defaultValue={selectedUser}
             disabled={mode === "View" ? true : false}
             label="Create By"
@@ -131,7 +128,7 @@ const ChannelForm = ({ mode }) => {
           <CustomSelection
             options={[true, false]}
             onChange={(v) => setValue("isPrivate", v)}
-            isLoading={isUsersLoading}
+            // isLoading={isUsersLoading}
             // defaultValue={selectedUser}
             disabled={mode === "View" ? true : false}
             label="Is Private"
@@ -141,7 +138,7 @@ const ChannelForm = ({ mode }) => {
             variant="solid"
             name={mode}
             className="w-full mt-6 mb-6 p-6 b bg-[#6366f1] text-white"
-            loading={isUsersLoading}
+            // loading={isUsersLoading}
             type="submit"
           />
         </form>

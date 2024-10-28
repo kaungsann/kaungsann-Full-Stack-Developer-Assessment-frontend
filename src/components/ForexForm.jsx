@@ -54,9 +54,10 @@ const ForexForm = ({ mode }) => {
         break;
       }
       case "Edit": {
+        delete data.id;
         delete data.createdAt;
         delete data.updatedAt;
-        updateForex({ ...data, id })
+        updateForex({ id, ...data })
           .unwrap()
           .then(() => {
             navigateTo("/trading/list");
@@ -107,7 +108,7 @@ const ForexForm = ({ mode }) => {
 
       <div className="flex flex-col items-center justify-center mt-20">
         <div className="text-xl font-semibold my-4 flex items-center justify-center">
-          <span>User Form</span>
+          <span>Forex Form</span>
           <ArrowBigRightDash className="mx-4 text-[#6366f1]" />
           <span>{mode}</span>
         </div>

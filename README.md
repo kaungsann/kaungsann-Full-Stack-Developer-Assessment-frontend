@@ -38,3 +38,4 @@ Clone this repository.
 Run npm install to install dependencies.
 Start the development server with npm run dev.
 This setup provides a robust, modern stack for building responsive and efficient React applications.
+`

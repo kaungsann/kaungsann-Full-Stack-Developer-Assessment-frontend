@@ -26,7 +26,9 @@ const TradingPage = () => {
 
   const navigateTo = useNavigate();
 
-  const { data: forexs } = useGetForexsQuery();
+  const { data } = useGetForexsQuery();
+
+  console.log("forex all data is a", data);
 
   const paginatePage = (pg) => {
     setPage(pg);
@@ -90,9 +92,9 @@ const TradingPage = () => {
     <div className="p-4">
       <HeaderBox />
       <TableBox
-        totalPages={forexs?.totalPages}
-        page={forexs?.page}
-        results={forexs?.results}
+        totalPages={data?.totalPages}
+        page={data?.page}
+        results={data?.results}
         selectedQueries={selectedQueies}
         onFilter={handleFilterChange}
         paginatePage={paginatePage}

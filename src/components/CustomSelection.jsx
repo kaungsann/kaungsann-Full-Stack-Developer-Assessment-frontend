@@ -41,8 +41,12 @@ const CustomSelection = ({
           <SelectItem>Loading...</SelectItem>
         ) : (
           options.map((option) => (
-            <SelectItem key={option} value={option} className="w-full">
-              {option}
+            <SelectItem
+              key={option.id}
+              value={option.username}
+              className="w-full"
+            >
+              {option?.username ? option?.username : option.role}
             </SelectItem>
           ))
         )}

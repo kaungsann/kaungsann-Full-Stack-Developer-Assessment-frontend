@@ -3,6 +3,8 @@ import HeaderBox from "../components/HeaderBox";
 
 import TableBox from "../components/TableBox";
 import {
+  FOREX_INITIAL_VISIBLE_COLUMNS,
+  forex_columns,
   CHANNEL_INITIAL_VISIBLE_COLUMNS,
   channel_columns,
 } from "../constants/index";
@@ -26,9 +28,7 @@ const ChannelPage = () => {
 
   const navigateTo = useNavigate();
 
-  const { data: channels } = useGetChannelsQuery();
-
-  console.log("user data is a", channels);
+  const { data } = useGetChannelsQuery();
 
   const paginatePage = (pg) => {
     setPage(pg);
@@ -46,11 +46,11 @@ const ChannelPage = () => {
 
       switch (columnKey) {
         case "name":
-          return <div>{datas?.username}</div>;
-        case "create_by":
-          return <h3>{datas?.create_by?.name}</h3>;
+          return <div>{datas?.name}</div>;
         case "members":
-          return <h3>{datas?.members.length}</h3>;
+          return <h3>{datas?.members}</h3>;
+        case "isPrivate":
+          return <h3>{datas?.isPrivate}</h3>;
         case "actions":
           return (
             <div className="relative flex justify-start items-center">
@@ -87,16 +87,16 @@ const ChannelPage = () => {
   );
 
   const handleNavigate = () => {
-    navigateTo("/channels/create");
+    navigateTo("/forexs/create");
   };
 
   return (
     <div className="p-4">
       <HeaderBox />
       <TableBox
-        totalPages={channels?.totalPages}
-        page={channels?.page}
-        results={channels?.results}
+        totalPages={data?.totalPages}
+        page={data?.page}
+        results={data?.results}
         selectedQueries={selectedQueies}
         onFilter={handleFilterChange}
         paginatePage={paginatePage}

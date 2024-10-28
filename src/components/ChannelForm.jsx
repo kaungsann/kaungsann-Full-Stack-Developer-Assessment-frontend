@@ -7,34 +7,39 @@ import CustomSelection from "./CustomSelection";
 import { useGetUsersQuery } from "../services/userApi";
 import CustomButton from "./CustomButton";
 import { ArrowBigRightDash } from "lucide-react";
+import {
+  useAddChannelMutation,
+  useUpdateChannelMutation,
+  useDeleteChannelMutation,
+  useGetChannelsByIdQuery,
+} from "../services/channelApi";
 
 import { toast } from "sonner";
+import { useEffect } from "react";
 
 const ChannelForm = ({ mode }) => {
   const { id } = useParams();
   const navigateTo = useNavigate();
-  // const {
-  //   data: usersData,
-  //   isLoading: isUsersLoading,
-  //   error: usersError,
-  // } = useGetUsersQuery();
+  const {
+    data: usersData,
+    isLoading: isUsersLoading,
+    error: usersError,
+  } = useGetUsersQuery();
 
-  // const [addChannel, { isLoading: isUpdating, error: updateError }] =
-  //   useAddChannelMutation();
-  // const [updateChannel, { isLoading: isInserting, error: insertError }] =
-  //   useUpdateChannelMutation();
-  // const [deleteChannel, { isLoading: isDeleting, error: deleteError }] =
-  //   useDeleteChannelMutation();
+  const [addChannel, { isLoading: isUpdating, error: updateError }] =
+    useAddChannelMutation();
+  const [updateChannel, { isLoading: isInserting, error: insertError }] =
+    useUpdateChannelMutation();
+  const [deleteChannel, { isLoading: isDeleting, error: deleteError }] =
+    useDeleteChannelMutation();
 
-  // const { data: userById, isLoading: isUserIdLoading } = useGetUserByIdQuery(
-  //   id,
-  //   {
-  //     skip: !id,
-  //   }
-  // );
+  const { data: channelData, isLoading: isChannelIdLoading } =
+    useGetChannelsByIdQuery(id, {
+      skip: !id,
+    });
+
   const {
     register,
-    watch,
     setValue,
     handleSubmit,
     reset,
@@ -58,7 +63,7 @@ const ChannelForm = ({ mode }) => {
       case "Edit": {
         delete data.createdAt;
         delete data.updatedAt;
-        updateChannel(data)
+        updateChannel({ ...data, id })
           .unwrap()
           .then(() => {
             navigateTo("/channels/list");
@@ -70,7 +75,7 @@ const ChannelForm = ({ mode }) => {
         break;
       }
       case "Delete": {
-        deleteChannel(data.id)
+        deleteChannel(id)
           .unwrap()
           .then(() => {
             navigateTo("/channels/list");
@@ -84,18 +89,30 @@ const ChannelForm = ({ mode }) => {
     }
   };
 
-  // if (usersError) {
-  //   toast.error(usersError.data?.message || "Failed to add channel");
-  // }
-  // if (insertError) {
-  //   toast.error(insertError.data?.message || "Failed to add channel");
-  // }
-  // if (updateError) {
-  //   toast.error(updateError.data?.message || "Failed to update channel");
-  // }
-  // if (deleteError) {
-  //   toast.error(deleteError.data?.message || "Failed to delete channel");
-  // }
+  if (usersError) {
+    toast.error(usersError.data?.message || "Failed to add channel");
+  }
+  if (insertError) {
+    toast.error(insertError.data?.message || "Failed to add channel");
+  }
+  if (updateError) {
+    toast.error(updateError.data?.message || "Failed to update channel");
+  }
+  if (deleteError) {
+    toast.error(deleteError.data?.message || "Failed to delete channel");
+  }
+
+  const isLoading =
+    isInserting || isUpdating || isDeleting || isChannelIdLoading;
+
+  useEffect(() => {
+    if (channelData) {
+      reset(channelData);
+    }
+  }, [channelData, reset]);
+
+  console.log("user data is a", usersData);
+
   return (
     <div className="p-4">
       <HeaderBox />
@@ -107,8 +124,8 @@ const ChannelForm = ({ mode }) => {
           <span>{mode}</span>
         </div>
 
-        {/* onSubmit={handleSubmit(onSubmit)}? */}
-        <form className="w-[400px]">
+        {/* ? */}
+        <form className="w-[400px]" onSubmit={handleSubmit(onSubmit)}>
           <CustomInput
             name="name"
             label="Name"
@@ -118,27 +135,19 @@ const ChannelForm = ({ mode }) => {
             error={errors.name}
           />
           <CustomSelection
-            // options={usersData?.results}
+            options={usersData?.results}
             onChange={(v) => setValue("created_by", v)}
-            //  isLoading={isUsersLoading}
-            // defaultValue={selectedUser}
+            isLoading={isUsersLoading}
+            // defaultValue={userById}
             disabled={mode === "View" ? true : false}
             label="Create By"
-          />
-          <CustomSelection
-            options={[true, false]}
-            onChange={(v) => setValue("isPrivate", v)}
-            // isLoading={isUsersLoading}
-            // defaultValue={selectedUser}
-            disabled={mode === "View" ? true : false}
-            label="Is Private"
           />
 
           <CustomButton
             variant="solid"
             name={mode}
             className="w-full mt-6 mb-6 p-6 b bg-[#6366f1] text-white"
-            // loading={isUsersLoading}
+            loading={isLoading}
             type="submit"
           />
         </form>

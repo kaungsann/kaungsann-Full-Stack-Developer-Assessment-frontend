@@ -15,6 +15,7 @@ import {
 } from "../services/userApi";
 import { toast } from "sonner";
 import { useEffect } from "react";
+import { Select, SelectItem } from "@nextui-org/react";
 
 const UserForm = ({ mode }) => {
   const { id } = useParams();
@@ -134,14 +135,33 @@ const UserForm = ({ mode }) => {
             // value={userData?.email}
             error={errors.email}
           />
-          <CustomSelection
-            options={["trader", "admin", "guest"]}
-            onChange={(v) => setValue("role", v)}
-            //  isLoading={isUsersLoading}
-            defaultValue={userData?.role}
-            disabled={mode === "View" ? true : false}
+
+          <Select
+            name="status"
+            id="status"
+            variant="bordered"
             label="Role"
-          />
+            labelPlacement="outside"
+            //  selectedKeys={selectedStatus ? [selectedStatus] : ["created"]}
+            placeholder="select role"
+            size="md"
+            classNames={{
+              base: "w-full",
+              trigger: "h-12 rounded-md mb-8",
+            }}
+            onChange={(e) => setValue("role", e.target.value)}
+            aria-label="Select status"
+          >
+            <SelectItem key="guest" value="guest">
+              guest
+            </SelectItem>
+            <SelectItem key="trader" value="trader">
+              trader
+            </SelectItem>
+            <SelectItem key="admin" value="admin">
+              admin
+            </SelectItem>
+          </Select>
 
           {mode !== "Edit" && (
             <CustomInput

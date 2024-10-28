@@ -2,10 +2,6 @@ import { Spinner } from "@nextui-org/react";
 import PropTypes from "prop-types";
 
 const DataBox = ({ data, isLoading, error, name }) => {
-  console.log("share datat is a", data);
-  console.log("loading is a", isLoading);
-  console.log("error is a", error);
-
   return (
     <>
       <div>

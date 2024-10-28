@@ -5,7 +5,7 @@ import Trade from "../assets/images/trade.png";
 export const sidebarLinks = [
   {
     imgURL: Home,
-    route: "/channels",
+    route: "/channels/list",
     label: "Channels",
   },
   {
@@ -79,8 +79,6 @@ export const forex_columns = [
 
 export const CHANNEL_INITIAL_VISIBLE_COLUMNS = [
   "name",
-  "created_by",
-  "members",
   "isPrivate",
   "createdAt",
   "actions",
@@ -92,16 +90,8 @@ export const channel_columns = [
     label: "Name",
   },
   {
-    key: "created_by",
-    label: "Create By",
-  },
-  {
-    key: "members",
-    label: "Member",
-  },
-  {
     key: "isPrivate",
-    label: "Is Private",
+    label: "is Private",
   },
   {
     key: "createdAt",

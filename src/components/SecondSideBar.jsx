@@ -8,8 +8,6 @@ const SecondSideBar = () => {
     error: channelError,
   } = useGetChannelsQuery();
 
-  console.log("channels is a", channels?.results);
-
   return (
     <>
       <section className="secsidebar bg-white dark:bg-[#020817]">

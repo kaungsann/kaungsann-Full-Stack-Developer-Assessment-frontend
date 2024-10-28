@@ -22,6 +22,7 @@ function AuthForm({ type }) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -29,7 +30,7 @@ function AuthForm({ type }) {
   const handleRegisterFormSubmit = async (data) => {
     try {
       const credentials = await regist(data).unwrap();
-      console.log("register credentials", credentials);
+
       if (credentials) {
         toast.success("Registration successful! 👏", {
           duration: 5000,
@@ -45,16 +46,17 @@ function AuthForm({ type }) {
 
   //user login handle
   const handleLoginFormSubmit = async (data) => {
-    console.log("login data is a", data);
     try {
+      delete data?.username;
       const credentials = await login(data).unwrap();
       console.log("login success daata is a", credentials);
       if (credentials) {
         toast.success("login successful! 👏", {
           duration: 5000,
         });
+        reset(data);
         dispatch(setCredentials(credentials));
-        navigateTo("/channels");
+        navigateTo("/channels/list");
       }
     } catch (error) {
       toast.error(`😞 ${error.message || isLoginError.data.message}`, {

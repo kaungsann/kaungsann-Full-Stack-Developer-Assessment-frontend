@@ -19,7 +19,7 @@ import ForexForm from "./components/ForexForm";
 
 function MainApp() {
   const routeConfig = [
-    { path: "/", element: <Navigate to="channels" /> },
+    { path: "/", element: <Navigate to="channels/list" /> },
     { path: "/register", element: <AuthPage type="register" /> },
     { path: "/login", element: <AuthPage type="login" /> },
     { path: "/401-unauthorized", element: <UnauthorizePage /> },
@@ -27,6 +27,29 @@ function MainApp() {
     {
       path: "/",
       element: <PrivateRoute roles={["admin", "guest", "trader"]} />,
+      children: [
+        {
+          path: "channels/list",
+          element: <ChannelPage />,
+        },
+        {
+          path: "/trading/list",
+          element: <TradingPage />,
+        },
+        {
+          path: "/messages",
+          element: <MessagePage />,
+        },
+        {
+          path: "/notifications",
+          element: <NotiPage />,
+        },
+      ],
+    },
+
+    {
+      path: "/",
+      element: <PrivateRoute roles={["admin"]} />,
       children: [
         {
           path: "users/list",
@@ -45,19 +68,15 @@ function MainApp() {
           element: <UserForm mode="Delete" />,
         },
         {
-          path: "channels",
-          element: <ChannelPage />,
-        },
-        {
           path: "/channels/create",
           element: <ChannelForm mode="Create" />,
         },
         {
-          path: "/channels/create",
+          path: "/channels/edit/:id",
           element: <ChannelForm mode="Edit" />,
         },
         {
-          path: "/channels/delete",
+          path: "/channels/delete/:id",
           element: <ChannelForm mode="Delete" />,
         },
         {
